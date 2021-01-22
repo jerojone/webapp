@@ -34,15 +34,24 @@ public class UserRepositoryTest {
 		user.isEnabled();
 		user.setfName("Naveen Raj");
 		user.setlName("T J");
-		BCryptPasswordEncoder enco = new BCryptPasswordEncoder();
-		String pass= enco.encode("jerojone@07");
-		user.setPassWord(pass);
+		
+		  BCryptPasswordEncoder enco = new BCryptPasswordEncoder(); String pass=
+		  enco.encode("jerojone@07"); user.setPassWord(pass);
+		 
 			
 		User savedUser=repo.save(user);
 		
 		User existUser =entityManager.find(User.class,savedUser.getAltId());
 		
 		assertThat(existUser.getAltId()).isEqualTo(user.getAltId());
+	}
+	
+	@Test
+	public void testFindUserByAltId() {
+		String altId="999999";
+		User user =repo.findByAltId(altId);
+		
+		assertThat(user).isNotNull();
 	}
 	
 }
