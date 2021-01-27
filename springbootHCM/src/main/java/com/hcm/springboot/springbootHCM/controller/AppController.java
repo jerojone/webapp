@@ -8,7 +8,14 @@ public class AppController {
 	
 	@GetMapping("/")
 	public String viewHomePage() {
-		return "index";
+		return "login";
 	}
+	
+
+	@GetMapping("/login")
+	public String loginPage() {
+		return "login";
+	}
+
 
 }
