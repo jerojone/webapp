@@ -5,6 +5,7 @@ import org.aspectj.weaver.ast.And;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
@@ -53,18 +54,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.authorizeRequests()
 		.antMatchers("/list_users").authenticated()
+		.antMatchers("/login").permitAll()
 		.anyRequest().permitAll()
 		.and()
 		.formLogin()
-			.permitAll()
 			.loginPage("/login")
 			.usernameParameter("altId")
-			.defaultSuccessUrl("/user_home")
+			.defaultSuccessUrl("/index")
+			.permitAll()
 		.and()
-		.logout().logoutSuccessUrl("/").permitAll();
+		.logout().logoutSuccessUrl("/").permitAll()
+		.and()
+		.exceptionHandling().accessDeniedPage("/403");
 	}
 	
-	
+	/*
+	 * @Bean public AuthenticationManager customAuthenticationManager() throws
+	 * Exception { return authenticationManager(); }
+	 * 
+	 * @Autowired public void configureGlobal(AuthenticationManagerBuilder auth)
+	 * throws Exception {
+	 * auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder
+	 * ()); }
+	 */
 	
 }
 
