@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>HCM :: Admin</title>
+  <title th:text="${page}">  </title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="/RoyalUI/template/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="/RoyalUI/template/vendors/base/vendor.bundle.base.css">
@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="/RoyalUI/template/css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="/RoyalUI/template/images/favicon.png" />
+  
 </head>
 <body>
   <div class="container-scroller">
@@ -31,7 +32,10 @@
       
       <!-- partial -->
       <div class="main-panel">
-        <div th:insert="/dashboard"></div>
+      
+       <!--  <div th:text="${page}" th:insert="/@{${page}}"></div> -->
+       <div  th:insert="${page}"></div> 
+      
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
       <!--   <footer class="footer">
@@ -62,6 +66,9 @@
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="/RoyalUI/template/js/dashboard.js"></script>
+  <!-- End custom js for this page-->
+    <!-- Custom js for this page-->
+  <script src="/RoyalUI/template/js/chart.js"></script>
   <!-- End custom js for this page-->
 </body>
 

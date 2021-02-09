@@ -54,18 +54,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.authorizeRequests()
 		.antMatchers("/list_users").authenticated()
+		.antMatchers("/index").authenticated()
 		.antMatchers("/mylogin").permitAll()
+		.antMatchers("/charts").authenticated()
 		.anyRequest().permitAll()
 		.and()
 		.formLogin()
 			.loginPage("/login")
 			.usernameParameter("altId")
 			.defaultSuccessUrl("/index")
+			.failureForwardUrl("/login?error")
 			.permitAll()
 		.and()
-		.logout().logoutSuccessUrl("/").permitAll()
+		.logout().logoutSuccessUrl("/login?logout").permitAll()
 		.and()
-		.exceptionHandling().accessDeniedPage("/403");
+				.exceptionHandling().accessDeniedPage("/403");
 		
 		http.csrf().disable();
 	}
