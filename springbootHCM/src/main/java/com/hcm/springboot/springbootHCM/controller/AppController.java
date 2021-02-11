@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AppController {
@@ -20,7 +21,11 @@ public class AppController {
 		 if (error != null)
 	            model.addAttribute("errorMsg", "Your username and password are invalid.");
 
-	        if (logout != null)
+			/*
+			 * if (invalidSession) model.addAttribute("invalidSession",
+			 * "Session Expired, Please re-login");
+			 */
+		 if (logout != null)
 	            model.addAttribute("msg", "You have been logged out successfully.");
 
 		return "mylogin";
